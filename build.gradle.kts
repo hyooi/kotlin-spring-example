@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
-    kotlin("plugin.allopen") version "1.4.32"
+    kotlin("plugin.jpa") version "1.4.32"
 }
 
 group = "com.example"
@@ -20,8 +20,6 @@ configurations {
 
 allOpen {
     annotation("javax.persistence.Entity")
-    annotation("javax.persistence.Embeddable")
-    annotation("javax.persistence.MappedSuperclass")
 }
 
 repositories {
@@ -36,12 +34,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-//    testImplementation("com.h2database:h2")
-
+    runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<KotlinCompile> {
