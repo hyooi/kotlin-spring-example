@@ -10,4 +10,4 @@ class User(
     var firstname: String,
     var lastname: String,
     var description: String?= null,
-    @Id @GeneratedValue r id: Long?= null)
+    @Id @GeneratedValue var id: Long?= null)
