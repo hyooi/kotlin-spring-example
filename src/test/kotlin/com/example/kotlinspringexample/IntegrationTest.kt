@@ -1,5 +1,6 @@
 package com.example.kotlinspringexample
 
+import com.example.kotlinspringexample.extension.toSlug
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
@@ -27,6 +28,17 @@ class IntegrationTest (@Autowired val restTemplate: TestRestTemplate) {
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(entity.body).contains("<h1>blog</h1>")
         assertThat(entity.body).contains("Hello World!")
+    }
+
+    @Test
+    fun `article페이지 타이틀`() {
+        println(">> article페이지 타이틀")
+
+        val title = "Reactor Aluminium as landed"
+        val entity = restTemplate.getForEntity<String>("/article/${title.toSlug()}")
+
+        assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(entity.body).contains(title, "Lorem ipsum", "dolor sitamet")
     }
 
     @AfterAll
