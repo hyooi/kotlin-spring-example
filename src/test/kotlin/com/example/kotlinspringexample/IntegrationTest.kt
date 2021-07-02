@@ -26,19 +26,16 @@ class IntegrationTest (@Autowired val restTemplate: TestRestTemplate) {
     fun `blog첫페이지 요청`() {
         val entity = restTemplate.getForEntity<String>("/")
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).contains("<h1>blog</h1>")
-        assertThat(entity.body).contains("Hello World!")
+        assertThat(entity.body).contains("<h1>blog</h1>", "Reactor")
     }
 
     @Test
     fun `article페이지 타이틀`() {
-        println(">> article페이지 타이틀")
-
-        val title = "Reactor Aluminium as landed"
+        val title = "Reactor Aluminium has landed"
         val entity = restTemplate.getForEntity<String>("/article/${title.toSlug()}")
 
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).contains(title, "Lorem ipsum", "dolor sitamet")
+        assertThat(entity.body).contains(title, "Lorem ipsum", "dolor sit amet")
     }
 
     @AfterAll
