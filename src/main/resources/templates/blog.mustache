@@ -11,6 +11,13 @@
       </div>
     </section>
   {{/banner.title}}
+
+  {{#articles}}
+    <section>
+        <h2 class="article-title"><a href="/article/{{slug}}">{{title}}</a></h2>
+        <div class="article-meta">By {{author.firstname}}, on {{addedAt}}</div>
+    </section>
+  {{/articles}}
 </div>
 
 {{> footer}}
