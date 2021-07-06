@@ -12,6 +12,7 @@
   
 ### Framework / Library
 - spring boot
+- spring security
 - jpa & hibernate
 - mustache
 - junit5
